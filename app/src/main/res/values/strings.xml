@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CS496 Final Mobile</string>
+    <string name="workouts_button">View Workouts</string>
+    <string name="exercise_button">View Exercises</string>
+    <string name="add_workouts_button">Add Workouts</string>
+    <string name="add_exercises_button">Add Exercises</string>
+    <string name="edit_workouts_button">Edit or Delete Workouts</string>
+    <string name="edit_exercises_button">Edit or Delete Exercises</string>
 </resources>

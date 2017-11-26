@@ -46,8 +46,76 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("MyTag", "testing, testing, 1 2 3");
+        //////////////////////////////////////
+        //Link buttons to activities
+        //////////////////////////////////////
 
+        //Workout view button click listener and onClick activity opener
+        Button button1 = (Button) findViewById(R.id.workouts_button);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, ViewWorkouts.class);
+                startActivity(intent);
+            }
+        });
+
+        //Exercise view button click listener and onClick activity opener
+        Button button2 = (Button) findViewById(R.id.exercise_button);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, ViewExercises.class);
+                startActivity(intent);
+            }
+        });
+
+        //add workouts button click listener and onClick activity opener
+        Button button3 = (Button) findViewById(R.id.add_workouts_button);
+        button3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, AddWorkouts.class);
+                startActivity(intent);
+            }
+        });
+
+        //add exercise button click listener and onClick activity opener
+        Button button4 = (Button) findViewById(R.id.add_exercises_button);
+        button4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, AddExercises.class);
+                startActivity(intent);
+            }
+        });
+
+        //edit and delete workouts button click listener and onClick activity opener
+        Button button5 = (Button) findViewById(R.id.edit_workouts_button);
+        button5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, EditDeleteWorkouts.class);
+                startActivity(intent);
+            }
+        });
+
+        //edit and delete exercises button click listener and onClick activity opener
+        Button button6 = (Button) findViewById(R.id.edit_exercises_button);
+        button6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, EditDeleteExercises.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+        //////////////////////////////////////
+        //Begin HTTP calls
         mOkHttpClient = new OkHttpClient();
 
         HttpUrl reqUrl = HttpUrl.parse(FRONT_PAGE_URL);
@@ -59,14 +127,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                Log.d("MyTag", "testing, testing, 4 5 6");
             }
 
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String r = response.body().string(); //put JSON in string variable r
-                Log.d("MyTag", "testing, testing, 7 8 9");
                 try {
 
                     JSONObject j = new JSONObject(r); //create JSON object with JSON valid string r
