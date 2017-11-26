@@ -39,16 +39,15 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private OkHttpClient mOkHttpClient;
-    private String FRONT_PAGE_URL = "http://localhost:8080";
+    private String FRONT_PAGE_URL = "http://10.0.2.2:8080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d("MyTag", "testing, testing, 1 2 3");
 
-        //////////////////////////////////////
-        //starting HTTP request testing here
         mOkHttpClient = new OkHttpClient();
 
         HttpUrl reqUrl = HttpUrl.parse(FRONT_PAGE_URL);
@@ -56,25 +55,33 @@ public class MainActivity extends AppCompatActivity {
                 .url(reqUrl)
                 .build();
 
-
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
+                Log.d("MyTag", "testing, testing, 4 5 6");
             }
+
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String r = response.body().string(); //put JSON in string variable r
+                Log.d("MyTag", "testing, testing, 7 8 9");
                 try {
 
                     JSONObject j = new JSONObject(r); //create JSON object with JSON valid string r
                     String title = j.getString("title"); //extract "title" from json object.
                     String[] testArray = {title}; // declare and populate array for adapter
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, testArray);
+                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, testArray);
                     ListView listView = (ListView) findViewById(R.id.test_text_view);
-                    listView.setAdapter(adapter);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((ListView)findViewById(R.id.test_text_view)).setAdapter(adapter);
+                        }
+                    });
 
                 } catch (JSONException e1) {
                     e1.printStackTrace();
@@ -82,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
 
