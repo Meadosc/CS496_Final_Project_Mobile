@@ -67,21 +67,32 @@ public class ViewWorkouts extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String r = response.body().string(); //put JSON in string variable r
-                Log.d("MyTag", "testing, testing, 1");
                 try {
 
-                    JSONObject j = new JSONObject(r); //create JSON object with JSON valid string r
-                    Log.d("MyTag", "testing, testing, 2");
-                    String title = j.getString("title"); //extract "title" from json object.
-                    Log.d("MyTag", "testing, testing, 3");
-                    String[] testArray = {title}; // declare and populate array for adapter
+                    ////////////////////////////
+                    //Prepare array and map from json response.
+                    JSONArray items = new JSONArray(r); //create JSON array with JSON valid string r
+                    List<Map<String,String>> posts = new ArrayList<Map<String,String>>();
+                    for(int i = 0; i < items.length(); i++){
+                        HashMap<String, String> m = new HashMap<String, String>();
+                        m.put("name", items.getJSONObject(i).getString("name"));
+                        m.put("date",items.getJSONObject(i).getString("date"));
+                        m.put("type",items.getJSONObject(i).getString("type"));
+                        m.put("notes",items.getJSONObject(i).getString("notes"));
+                        m.put("workoutURLID",items.getJSONObject(i).getString("workoutURLID"));
+                        posts.add(m);
+                        Log.d("MyTag", "testing, testing, " + i);
+                    }
 
 
 
-                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewWorkouts.this, android.R.layout.simple_list_item_1, testArray);
-                    ListView listView = (ListView) findViewById(R.id.workout_view);
-
-                    Log.d("MyTag", "testing, testing, 4");
+                    final SimpleAdapter adapter = new SimpleAdapter(
+                            ViewWorkouts.this,
+                            posts,
+                            R.layout.workout_list_item,
+                            new String[]{"name", "date", "type", "notes", "workoutURLID"},
+                            new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5});
+                    //ListView listView = (ListView) findViewById(R.id.workout_view);
 
                     runOnUiThread(new Runnable() {
                         @Override

@@ -135,13 +135,16 @@ public class MainActivity extends AppCompatActivity {
                 String r = response.body().string(); //put JSON in string variable r
                 try {
 
+                    //////////////////////////////
+                    //Set up JSON
                     JSONObject j = new JSONObject(r); //create JSON object with JSON valid string r
                     String title = j.getString("title"); //extract "title" from json object.
                     String[] testArray = {title}; // declare and populate array for adapter
 
-                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, testArray);
-                    ListView listView = (ListView) findViewById(R.id.test_text_view);
 
+                    //////////////////////////////
+                    //Set adapter
+                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, testArray);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

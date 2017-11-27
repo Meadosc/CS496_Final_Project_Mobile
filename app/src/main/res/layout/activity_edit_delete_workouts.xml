@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.cs496finalmobile.EditDeleteWorkouts">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="115dp" />
 </android.support.constraint.ConstraintLayout>
