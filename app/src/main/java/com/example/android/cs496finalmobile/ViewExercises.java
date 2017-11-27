@@ -39,12 +39,73 @@ import okhttp3.Response;
 public class ViewExercises extends AppCompatActivity {
 
     private OkHttpClient mOkHttpClient;
-    private String WORKOUT_VIEW_URL = "http://10.0.2.2:8080/exercise";
+    private String EXERCISE_VIEW_URL = "http://10.0.2.2:8080/exercise";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_exercises);
+
+
+
+        //////////////////////////////////////
+        //Begin HTTP calls
+        mOkHttpClient = new OkHttpClient();
+
+        HttpUrl reqUrl = HttpUrl.parse(EXERCISE_VIEW_URL);
+        Request request = new Request.Builder()
+                .url(reqUrl)
+                .build();
+
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String r = response.body().string(); //put JSON in string variable r
+                try {
+
+                    ////////////////////////////
+                    //Prepare array and map from json response.
+                    JSONArray items = new JSONArray(r); //create JSON array with JSON valid string r
+                    List<Map<String,String>> posts = new ArrayList<Map<String,String>>();
+                    for(int i = 0; i < items.length(); i++){
+                        HashMap<String, String> m = new HashMap<String, String>();
+                        m.put("name", items.getJSONObject(i).getString("name"));
+                        m.put("weight",items.getJSONObject(i).getString("weight"));
+                        m.put("sets",items.getJSONObject(i).getString("sets"));
+                        m.put("reps",items.getJSONObject(i).getString("reps"));
+                        m.put("exerciseURLID",items.getJSONObject(i).getString("exerciseURLID"));
+                        posts.add(m);
+                    }
+
+
+
+                    final SimpleAdapter adapter = new SimpleAdapter(
+                            ViewExercises.this,
+                            posts,
+                            R.layout.workout_list_item,
+                            new String[]{"name", "weight", "sets", "reps", "exerciseURLID"},
+                            new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5});
+                    //ListView listView = (ListView) findViewById(R.id.workout_view);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((ListView)findViewById(R.id.exercise_view)).setAdapter(adapter);
+                        }
+                    });
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
 
 
 
