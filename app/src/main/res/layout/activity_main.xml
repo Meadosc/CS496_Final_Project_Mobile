@@ -45,11 +45,25 @@
         android:text="@string/edit_workouts_button"/>
 
     <Button
-        android:id="@+id/edit_exercises_button"
+    android:id="@+id/edit_exercises_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:text="@string/edit_exercises_button"/>
+
+    <Button
+        android:id="@+id/view_relationships_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="@string/edit_exercises_button"/>
+        android:text="@string/view_relationships_button"/>
+
+    <Button
+        android:id="@+id/edit_relationship_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/edit_relationship_button"/>
 
     <ListView
         android:id="@+id/test_text_view"

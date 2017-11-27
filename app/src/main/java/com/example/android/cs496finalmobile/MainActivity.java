@@ -110,6 +110,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //view relationships button click listener and onClick activity opener
+        Button button7 = (Button) findViewById(R.id.view_relationships_button);
+        button6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, ViewRelationships.class);
+                startActivity(intent);
+            }
+        });
+
+        //edit and delete relationships button click listener and onClick activity opener
+        Button button8 = (Button) findViewById(R.id.edit_relationship_button);
+        button6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Open activity
+                Intent intent = new Intent(MainActivity.this, EditRelationships.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 

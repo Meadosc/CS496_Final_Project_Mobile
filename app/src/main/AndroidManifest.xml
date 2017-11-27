@@ -24,7 +24,9 @@
         <activity android:name=".AddWorkouts" />
         <activity android:name=".AddExercises" />
         <activity android:name=".EditDeleteWorkouts" />
-        <activity android:name=".EditDeleteExercises"></activity>
+        <activity android:name=".EditDeleteExercises" />
+        <activity android:name=".ViewRelationships" />
+        <activity android:name=".EditRelationships"></activity>
     </application>
 
 </manifest>

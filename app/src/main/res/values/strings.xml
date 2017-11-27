@@ -6,6 +6,8 @@
     <string name="add_exercises_button">Add Exercises</string>
     <string name="edit_workouts_button">Edit or Delete Workouts</string>
     <string name="edit_exercises_button">Edit or Delete Exercises</string>
+    <string name="view_relationships_button"> View Relationships</string>
+    <string name="edit_relationship_button">Edit Relationships</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
 
