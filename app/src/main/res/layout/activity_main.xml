@@ -59,7 +59,7 @@
         android:text="@string/view_relationships_button"/>
 
     <Button
-        android:id="@+id/edit_relationship_button"
+        android:id="@+id/edit_relationships_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
