@@ -50,6 +50,7 @@ public class EditDeleteExercises extends AppCompatActivity {
     private String[] mExercise = new String[5];
     private String mExerciseJSON;
     Button mAddButton;
+    Button mDeleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,5 +107,47 @@ public class EditDeleteExercises extends AppCompatActivity {
 
             }
         });
+
+
+        /////////////////////////////////////
+        //delete button. Get object info.
+        mDeleteButton = (Button) findViewById(R.id.delete_button);
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExercise[0] = ((EditText)findViewById(R.id.exercise_delete_input)).getText().toString();
+
+                //////////////////////////////////////
+                //Begin HTTP calls
+                mOkHttpClient = new OkHttpClient();
+
+
+                //Create url with ID
+                mURLwithID = EXERCISE_ADD_URL + "/" + mExercise[0];
+
+                HttpUrl reqUrl = HttpUrl.parse(mURLwithID);
+                Request request = new Request.Builder()
+                        .url(reqUrl)
+                        .delete() //testing
+                        .build();
+
+                mOkHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.d("myTag", "exercise deleted");
+
+                    }
+                });
+
+
+            }
+        });
+
     }
 }

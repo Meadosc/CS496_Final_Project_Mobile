@@ -131,6 +131,36 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_button" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:text="WorkoutID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_weight="1"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="String"
+            android:ems="10"
+            android:id="@+id/workout_delete_input"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="delete Workout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete_button" />
+
 
 
 
