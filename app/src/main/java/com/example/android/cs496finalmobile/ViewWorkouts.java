@@ -71,6 +71,8 @@ public class ViewWorkouts extends AppCompatActivity {
 
                     ////////////////////////////
                     //Prepare array and map from json response.
+                    Log.d("MyTag","r: " + r);
+
                     JSONArray items = new JSONArray(r); //create JSON array with JSON valid string r
                     List<Map<String,String>> posts = new ArrayList<Map<String,String>>();
                     for(int i = 0; i < items.length(); i++){
@@ -80,6 +82,11 @@ public class ViewWorkouts extends AppCompatActivity {
                         m.put("type",items.getJSONObject(i).getString("type"));
                         m.put("notes",items.getJSONObject(i).getString("notes"));
                         m.put("workoutURLID",items.getJSONObject(i).getString("workoutURLID"));
+
+                        //debug
+                        m.put("exerciseIDs",items.getJSONObject(i).getString("exerciseIDs"));
+                        //debug
+
                         posts.add(m);
                         Log.d("MyTag", "testing, testing, " + i);
                     }
@@ -90,8 +97,8 @@ public class ViewWorkouts extends AppCompatActivity {
                             ViewWorkouts.this,
                             posts,
                             R.layout.workout_list_item,
-                            new String[]{"name", "date", "type", "notes", "workoutURLID"},
-                            new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5});
+                            new String[]{"name", "date", "type", "notes", "workoutURLID", "exerciseIDs"},
+                            new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6});
                     //ListView listView = (ListView) findViewById(R.id.workout_view);
 
                     runOnUiThread(new Runnable() {

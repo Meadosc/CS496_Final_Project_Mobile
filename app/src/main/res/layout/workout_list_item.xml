@@ -33,6 +33,12 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <Button
         android:id="@+id/edit_button"
         android:layout_width="match_parent"
@@ -40,12 +46,6 @@
         android:layout_gravity="right"
         android:text="@string/edit"/>
 
-    <Button
-        android:id="@+id/delete_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/delete"/>
 
 
 </LinearLayout>
